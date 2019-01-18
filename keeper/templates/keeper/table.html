@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+        {{ page_title }}
+    </title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  </head>
+  <nav class="navbar">
+    <a class="btn btn-success float-right" 
+    href="{% static 'download/store.json' %}" 
+    download>скачать json</a>
+  </nav>
+  <body>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Наименование</th>
+            <th colspan="3">Количество</th>
+          </tr>
+          <tr> 
+              <th>склад</th>
+              <th>в пути</th>
+              <th>нужно</th>
+          </tr>
+        </thead>
+      {% for w, n, c, a, m in data %}
+        {% if w %}
+        <tr class="warning-item">
+        {% else %}
+        <tr class="regular-item">
+        {% endif %}
+          <td class="left-align">{{ n }}</td>
+          <td>{{ c }}</td>
+          <td>{{ a }}</td>
+          <td>{{ m }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    </main>
+  </body>
+  <footer>
+    <p class="float-right">
+      melival, 2019
+    </p>
+  </footer>
+</html>
